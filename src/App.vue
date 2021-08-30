@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="monty-hall">
+    <div class="doors">
+      <Door number="1" :hasGift="false" /> <Door number="2" :hasGift="true" />
+      <Door number="3" :hasGift="false" />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Door from "./components/Door";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { Door },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --frame-border: 5px solid brown;
+}
+
+body {
+  background: linear-gradient(to right, rgb(21, 153, 87), rgb(21, 87, 153));
+}
+
+.doors {
+  display: flex;
+  justify-content: space-around;
 }
 </style>
