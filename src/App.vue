@@ -22,6 +22,7 @@ export default {
 
 :root {
   --frame-border: 5px solid brown;
+  --selected-border: 5px solid yellow;
 }
 
 body {

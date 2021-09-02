@@ -1,9 +1,15 @@
 <template>
   <div class="area">
-    <div class="frame"><Gift v-if="hasGift" /></div>
-    <div class="door" v-if="!open">
-      <div class="number">{{ number }}</div>
-      <div class="knob" @click="open = true"></div>
+    <div class="frame" :class="{ selected: selected }">
+      <Gift v-if="hasGift" />
+    </div>
+    <div class="door" v-if="!open" @click="selected = !selected">
+      <div class="number" :class="{ selected: selected }">{{ number }}</div>
+      <div
+        class="knob"
+        :class="{ selected: selected }"
+        @click="open = true"
+      ></div>
     </div>
   </div>
 </template>
@@ -17,8 +23,9 @@ export default {
   components: { Gift },
   setup() {
     const open = ref(false);
+    const selected = ref(false);
 
-    return { open };
+    return { open, selected };
   },
 };
 </script>
@@ -32,6 +39,8 @@ export default {
 
   display: flex;
   justify-content: center;
+
+  border-bottom: 10px solid #aaa;
 }
 
 .frame {
@@ -48,12 +57,22 @@ export default {
   align-items: flex-end;
 }
 
+.frame.selected {
+  border-left: var(--selected-border);
+  border-top: var(--selected-border);
+  border-right: var(--selected-border);
+}
+
 .door {
   position: absolute;
   top: 5px;
   width: 170px;
   height: 295px;
   background-color: chocolate;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .knob {
@@ -61,5 +80,15 @@ export default {
   width: 20px;
   border-radius: 10px;
   background-color: brown;
+  align-self: flex-start;
+  margin-top: 65px;
+}
+
+.knob.selected {
+  background-color: yellow;
+}
+
+.number.selected {
+  color: yellow;
 }
 </style>
