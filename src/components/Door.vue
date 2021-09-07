@@ -1,6 +1,6 @@
 <template>
   <div class="area">
-    <div class="frame" :class="{ selected: selected }">
+    <div class="frame" :class="{ selected: selected && !open }">
       <Gift v-if="hasGift" />
     </div>
     <div class="door" v-if="!open" @click="selected = !selected">
